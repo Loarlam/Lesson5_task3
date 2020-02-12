@@ -12,25 +12,27 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            int[,] array;
+            MyMatrix myMatrix, myDerivedMatrix;
+            Random randomIntValue = new Random();
+            int[,] baseArray, derivedArray;
+            int numberOfLines, numberOfColumns, numberOfLinesDerivedMatrix, numberOfColumnsDerivedMatrix;
 
             Console.Write("Количество строк матрицы = ");
-            int numberOfLines = Int32.Parse(Console.ReadLine());
+            numberOfLines = Int32.Parse(Console.ReadLine());
             Console.Write("Количество столбцов матрицы = ");
-            int numberOfColumns = Int32.Parse(Console.ReadLine());
+            numberOfColumns = Int32.Parse(Console.ReadLine());
 
-            array = new int[numberOfLines, numberOfColumns];
+            baseArray = new int[numberOfLines, numberOfColumns];
 
-            Random randomIntValue = new Random();
             for (int i = 0; i < numberOfLines; i++)
             {
                 for (int j = 0; j < numberOfColumns; j++)
                 {
-                    array[i, j] = randomIntValue.Next(10, 99);
+                    baseArray[i, j] = randomIntValue.Next(10, 99);
                 }
             }
 
-            MyMatrix myMatrix = new MyMatrix(array);
+            myMatrix = new MyMatrix(baseArray);
 
             Console.WriteLine("Элементы матрицы:");
             for (int i = 0; i < numberOfLines; i++)
@@ -41,7 +43,37 @@ namespace Task3
                 }
                 Console.WriteLine();
             }
-            
+
+            Console.Write("\nКоличество строк производной матрицы = ");
+            numberOfLinesDerivedMatrix = Int32.Parse(Console.ReadLine());
+            Console.Write("Количество столбцов производной матрицы = ");
+            numberOfColumnsDerivedMatrix = Int32.Parse(Console.ReadLine());
+
+            derivedArray = new int[numberOfLinesDerivedMatrix, numberOfColumnsDerivedMatrix];
+
+            for (int i = 0; i < numberOfLines; i++)
+            {
+                for (int j = 0; j < numberOfColumns; j++)
+                {
+                    derivedArray[i, j] = baseArray[i,j];
+                }
+            }
+
+            myDerivedMatrix = new MyMatrix(derivedArray);
+
+            if (numberOfLines < numberOfLinesDerivedMatrix && numberOfColumns < numberOfColumnsDerivedMatrix)
+            {               
+                Console.WriteLine("Элементы матрицы:");
+                for (int i = 0; i < numberOfLinesDerivedMatrix; i++)
+                {
+                    for (int j = 0; j < numberOfColumnsDerivedMatrix; j++)
+                    {
+                        Console.Write($"{myDerivedMatrix[i, j]} ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+
             Console.ReadKey();
         }
     }
