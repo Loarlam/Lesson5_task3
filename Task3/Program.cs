@@ -13,34 +13,28 @@ namespace Task3
         static void Main(string[] args)
         {
             MyMatrix myMatrix = new MyMatrix(), myDerivedMatrix = new MyMatrix();
-            int[,] baseArray, derivedArray;
+            int[,] baseArray;
 
             Console.Write("Количество строк матрицы = ");
-            myMatrix.NumberOfLines = Int32.Parse(Console.ReadLine());
+            myMatrix.NumberOfLines = int.Parse(Console.ReadLine());
             Console.Write("Количество столбцов матрицы = ");
-            myMatrix.NumberOfColumns = Int32.Parse(Console.ReadLine());
+            myMatrix.NumberOfColumns = int.Parse(Console.ReadLine());
 
             baseArray = myMatrix.FillsAnarray();
 
             OutputElementOfArray(myMatrix.NumberOfLines, myMatrix.NumberOfColumns, myMatrix);
 
             Console.Write("\nКоличество строк производной матрицы = ");
-            myDerivedMatrix.NumberOfLines = Int32.Parse(Console.ReadLine());
+            myDerivedMatrix.NumberOfLines = int.Parse(Console.ReadLine());
             Console.Write("Количество столбцов производной матрицы = ");
-            myDerivedMatrix.NumberOfColumns = Int32.Parse(Console.ReadLine());
+            myDerivedMatrix.NumberOfColumns = int.Parse(Console.ReadLine());
 
-            derivedArray = myDerivedMatrix.FillsAnarray();
-
-            for (int i = 0; i < myMatrix.NumberOfLines; i++)
-            {
-                for (int j = 0; j < myMatrix.NumberOfColumns; j++)
-                {
-                    derivedArray[i, j] = baseArray[i, j];
-                }
-            }
+            myDerivedMatrix.FillsAnarray();
+            myDerivedMatrix.ComparesLinesAndColumnsWithAnotherMatrices(myMatrix, myDerivedMatrix, baseArray);
 
             OutputElementOfArray(myDerivedMatrix.NumberOfLines, myDerivedMatrix.NumberOfColumns, myDerivedMatrix);
 
+            //Метод OutputElementsOfArray, в данном теле, нужен лишь затем, чтобы отобразить работу индексатора
             void OutputElementOfArray(int numberOfLine, int numberOfColumns, MyMatrix myClassReference)
             {
                 Console.WriteLine("Элементы матрицы:");
