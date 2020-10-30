@@ -38,7 +38,7 @@ namespace Task3
                     }
                 }
             }
-            //Если [3,3] > [4,4], то сжимаем производную матрицу и заполняем элементами базовой матрицы
+            //Если [5,5] > [4,4], то сжимаем производную матрицу и заполняем элементами базовой матрицы
             else if (myMatrixClass.NumberOfLines > myDerivedClass.NumberOfLines && myMatrixClass.NumberOfColumns > myDerivedClass.NumberOfColumns)
             {
                 for (int i = 0; i < myDerivedClass.NumberOfLines; i++)
